@@ -1,0 +1,205 @@
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+% ----------------------------------------------------------
+% CORES
+% ----------------------------------------------------------
+\definecolor{codeblue}{RGB}{33,74,135}
+\definecolor{codegreen}{RGB}{0,120,0}
+\definecolor{codegray}{RGB}{100,100,100}
+\definecolor{codeorange}{RGB}{180,90,0}
+\definecolor{codebg}{RGB}{245,245,245}
+
+% ----------------------------------------------------------
+% SUPORTE A UTF-8 (ACENTOS)
+% ----------------------------------------------------------
+\lstset{
+  inputencoding=utf8,
+  extendedchars=true,
+  literate=
+    {á}{{\'a}}1 {à}{{\`a}}1 {ã}{{\~a}}1 {â}{{\^a}}1
+    {é}{{\'e}}1 {ê}{{\^e}}1
+    {í}{{\'i}}1
+    {ó}{{\'o}}1 {ô}{{\^o}}1 {õ}{{\~o}}1
+    {ú}{{\'u}}1
+    {ç}{{\c c}}1
+    {Á}{{\'A}}1 {Ã}{{\~A}}1 {Â}{{\^A}}1
+    {É}{{\'E}}1 {Ê}{{\^E}}1
+    {Í}{{\'I}}1
+    {Ó}{{\'O}}1 {Ô}{{\^O}}1 {Õ}{{\~O}}1
+    {Ú}{{\'U}}1
+    {Ç}{{\c C}}1
+}
+
+% ----------------------------------------------------------
+% ESTILO BASE (ROBUSTO)
+% ----------------------------------------------------------
+\lstdefinestyle{base}{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{codebg},
+    breaklines=true,
+    breakatwhitespace=false,
+    columns=fullflexible,
+    keepspaces=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{codegray},
+    numbersep=6pt,
+    showstringspaces=false,
+    tabsize=2,
+    captionpos=t,
+    aboveskip=1em,
+    belowskip=1em,
+    xleftmargin=0.5em,
+    xrightmargin=0.5em,
+    postbreak=\mbox{\textcolor{codegray}{$\hookrightarrow$}\space}
+}
+
+% ==========================================================
+% JAVASCRIPT
+% ==========================================================
+\lstdefinelanguage{JavaScript}{
+  keywords={
+    break, case, catch, continue, debugger, default, delete, do, else,
+    finally, for, function, if, in, instanceof, new, return, switch,
+    this, throw, try, typeof, var, void, while, with, const, let,
+    async, await
+  },
+  keywordstyle=\color{codeblue}\bfseries,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{codegreen}\itshape,
+  stringstyle=\color{codeorange},
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinestyle{javascript}{
+    style=base,
+    language=JavaScript
+}
+
+% ==========================================================
+% JSON (melhorado)
+% ==========================================================
+\lstdefinestyle{json}{
+    style=base,
+    showstringspaces=false,
+    basicstyle=\ttfamily\small
+}
+
+% ==========================================================
+% BASH / SHELL
+% ==========================================================
+\lstdefinestyle{bashblock}{
+    style=base,
+    language=sh
+}
+
+% ==========================================================
+% JAVA
+% ==========================================================
+\lstdefinestyle{java}{
+    style=base,
+    language=Java,
+    keywordstyle=\color{codeblue}\bfseries,
+    commentstyle=\color{codegreen}\itshape,
+    stringstyle=\color{codeorange}
+}
+
+% ==========================================================
+% PYTHON
+% ==========================================================
+\lstdefinestyle{python}{
+    style=base,
+    language=Python,
+    keywordstyle=\color{codeblue}\bfseries,
+    commentstyle=\color{codegreen}\itshape,
+    stringstyle=\color{codeorange},
+    morekeywords={self, cls}
+}
+
+% ==========================================================
+% C++
+% ==========================================================
+\lstdefinestyle{cpp}{
+    style=base,
+    language=C++,
+    keywordstyle=\color{codeblue}\bfseries,
+    commentstyle=\color{codegreen}\itshape,
+    stringstyle=\color{codeorange}
+}
+
+% ==========================================================
+% DOCKER
+% ==========================================================
+\lstdefinestyle{dockerblock}{
+    style=base,
+    language=sh
+}
+
+% ==========================================================
+% SQL
+% ==========================================================
+\lstdefinestyle{sql}{
+    style=base,
+    language=SQL,
+    keywordstyle=\color{codeblue}\bfseries,
+    commentstyle=\color{codegreen}\itshape,
+    stringstyle=\color{codeorange},
+    morekeywords={
+        PRIMARY, KEY, NOT, NULL, UNIQUE, DEFAULT,
+        DATE, SERIAL, CREATE, TABLE, INSERT,
+        UPDATE, DELETE, SELECT, FROM, WHERE
+    }
+}
+
+% ==========================================================
+% XML
+% ==========================================================
+
+\lstdefinelanguage{XML}{
+    morestring=[b]",
+    morestring=[b]',
+    stringstyle=\color{codeorange},
+    comment=[s]{<!--}{-->},
+    commentstyle=\color{codegreen}\itshape,
+    morekeywords={<?xml, xmlns, version, encoding},
+    keywordstyle=\color{codeblue},
+    alsoletter={-},
+    sensitive=true
+}
+
+\lstdefinestyle{xml}{
+    style=base,
+    language=XML
+}
+
+% ==========================================================
+% ABNT
+% ==========================================================
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Lista de códigos}
+
+% Padroniza com abnTeX2
+\makeatletter
+\renewcommand{\lstlistoflistings}{%
+  \begingroup
+  \phantompart
+  \pdfbookmark[0]{\lstlistlistingname}{lol}
+  \listof{lstlisting}{\lstlistlistingname}
+  \endgroup
+}
+\makeatother
+
+% Numeração contínua
+\lstset{numberbychapter=false}
+
+% Lista personalizada com "Código X -"
+\newcommand{\listofcodigos}{
+  \begingroup
+    \renewcommand{\numberline}[1]{Código~##1~--~}
+    \lstlistoflistings
+  \endgroup
+}
