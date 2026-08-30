@@ -1,0 +1,63 @@
+% ------------------------------------------------------------------------
+% Folha de Rosto personalizada (Autor e Título em MAIÚSCULAS)
+% Substitui o ambiente folhaderosto do abnTeX2
+% \begin{folhaderosto}
+% \end{folhaderosto}
+% ------------------------------------------------------------------------
+
+\makeatletter
+
+% ---- Ambiente principal ----
+\renewenvironment{folhaderosto}
+{%
+%  \cleardoublepage
+\clearpage
+
+  \thispagestyle{empty}
+
+  \begin{center}
+
+  % Autor
+  {\ABNTEXchapterfont\large\MakeUppercase{\imprimirautor}\par}
+
+  \vspace*{\fill}
+
+  % Título
+  {\ABNTEXchapterfont\bfseries\Large\MakeUppercase{\imprimirtitulo}\par}
+
+  \vspace*{\fill}
+
+  % Preâmbulo + orientações
+  \hspace{.45\textwidth}
+  \begin{minipage}{.5\textwidth}
+    \imprimirpreambulo\par
+
+    \vspace{1em}
+
+    \imprimirorientadorRotulo~\imprimirorientador
+
+%    \ifnotempty{\imprimircoorientador}{%
+%      \par
+%      \imprimircoorientadorRotulo~\imprimircoorientador
+%    }
+
+      \ifx\imprimircoorientador\empty
+          % não faz nada
+      \else
+         \par
+         \imprimircoorientadorRotulo~\imprimircoorientador
+      \fi
+  \end{minipage}
+
+  \vspace*{\fill}
+
+  % Local e data
+  {\large\imprimirlocal\par}
+  {\large\imprimirdata\par}
+
+  \end{center}
+
+%  \cleardoublepage
+}
+{}
+\makeatother

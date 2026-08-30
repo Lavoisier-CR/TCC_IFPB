@@ -1,1 +1,39 @@
-capa
+\makeatletter
+\renewcommand{\imprimircapa}{%
+  \begin{capa}
+    \center
+
+    % ================= LOGO =================
+    %\vspace*{1cm}
+    \includegraphics[width=3cm]{Figuras/Instituto_Federal_da_Paraíba_-_Logo.png}
+
+    %\vspace{1cm}
+
+    % ================= CABEÇALHO =================
+    {\ABNTEXchapterfont\small
+    Instituto Federal da Paraíba\\
+    Bacharelado em Engenharia de Computação\\
+    Campus Campina Grande
+    \par}
+
+    \vfill
+
+    % ================= AUTOR =================
+    {\ABNTEXchapterfont\large\MakeUppercase{\imprimirautor}\par}
+
+    \vfill
+
+    % ================= TÍTULO =================
+    {\ABNTEXchapterfont\bfseries\Large\MakeUppercase{\imprimirtitulo}\par}
+
+    \vfill
+
+    % ================= LOCAL E ANO =================
+    {\large
+      \imprimirlocal\\
+      \imprimirdata
+      \par}
+
+  \end{capa}
+}
+\makeatother
